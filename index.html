@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<style>
+			body {
+				background: url(img/QQ截图20221114181756.jpg)repeat;
+			}
+
+			@font-face {
+				font-family: 'icomoon';
+				src: url('fonts/icomoon.eot?wr5es');
+				src: url('fonts/icomoon.eot?wr5es#iefix') format('embedded-opentype'),
+					url('fonts/icomoon.ttf?wr5es') format('truetype'),
+					url('fonts/icomoon.woff?wr5es') format('woff'),
+					url('fonts/icomoon.svg?wr5es#icomoon') format('svg');
+				font-weight: normal;
+				font-style: normal;
+				font-display: block;
+			}
+
+			* {
+				font-family: 'icomoon';
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			video {
+				position: fixed;
+				width: 100%;
+				height: 100%;
+				z-index: -10;
+				object-fit: cover;
+			}
+
+			body {
+				height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background-color: rgb(7, 14, 34);
+			}
+
+			main {
+				position: relative;
+				width: 220px;
+				height: 130px;
+				perspective: 800px;
+			}
+
+			.haha {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				transform-style: preserve-3d;
+				transition: all 1s;
+			}
+
+			.but1,
+			.but2 {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				width: 50px;
+				height: 50px;
+				font-size: 30px;
+				color: white;
+				opacity: 0.8;
+				line-height: 50px;
+				text-align: center;
+				border-radius: 50%;
+				cursor: pointer;
+				user-select: none;
+			}
+
+			.but2 {
+				left: -320px;
+			}
+
+			.but1 {
+				right: -320px;
+			}
+
+			.but1:hover,
+			.but2:hover {
+				box-shadow: inset 0 0 5px rgb(18, 208, 221);
+				opacity: 1;
+			}
+
+			.but1:active,
+			.but2:active {
+				/*  background-color: rgb(22, 163, 81); */
+				box-shadow: inset 0 0 5px rgb(18, 208, 221),
+					inset 0 0 10px rgb(18, 208, 221),
+					inset 0 0 15px rgb(18, 208, 221);
+			}
+
+			.box {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				transform: rotateY(calc(var(--d) * 45deg)) translateZ(295px);
+			}
+
+			.box img {
+				width: 100%;
+				height: 100%;
+			}
+			embed{
+				width: 120px;
+				height: 60px;
+				position: absolute;
+				left: 10px;
+				padding: 0px;
+				margin: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<embed src="img/1.mp3">
+		<video src="video/3.mp4" autoplay loop muted></video>
+		<main id="main">
+			<div class="but1"></div>
+			<div class="but2"></div>
+			<div class="haha">
+
+				<div class="box" style="--d: 0;"> <img src="img/0ae5116d5e34ec414a1bfeabd59000b.jpg"> </div>
+				<div class="box" style="--d: 1;"> <img src="img/6410f2b72a16da2a99bdcedc8c14cbe.jpg"> </div>
+				<div class="box" style="--d: 2;"> <img src="img/70c05ba32a0cd4408a505a523a95d2a.jpg"> </div>
+				<div class="box" style="--d: 3;"> <img src="img/839d77578b5b1a18d2f1d9898279474.jpg"> </div>
+				<div class="box" style="--d: 4;"> <img src="img/9c3e02b3fc34d6f818a93c55d76fb9f.jpg"> </div>
+				<div class="box" style="--d: 5;"> <img src="img/941abb4973a09475f891e0b44cf735f.jpg"> </div>
+				<div class="box" style="--d: 6;"> <img src="img/5b1a0b061ed28c1fb766dc72b7f9094.jpg"> </div>
+				<div class="box" style="--d: 7;"> <img src="img/ad56f7a2a4ef6a5b88dfe5e0203795a.jpg"> </div>
+			</div>
+		</main>
+
+		<script>
+			var haha = document.querySelector(".haha");
+			var but1 = document.querySelector(".but1");
+			var but2 = document.querySelector(".but2");
+			/* 旋转角度 */
+			var zhuan = 0;
+			/* 设置轮播定时器 */
+			var lunbo = setInterval(fn, 3000);
+
+			but1.addEventListener('click', function() {
+				zhuan = zhuan - 45;
+				haha.style.cssText = ` transform: rotateY(${zhuan}deg); `;
+			})
+			but1.addEventListener('mouseover', function() {
+				clearInterval(lunbo);
+			});
+			but1.addEventListener('mouseout', function() {
+				lunbo = setInterval(fn, 3000);
+			});
+
+			but2.addEventListener('click', fn);
+			but2.addEventListener('mouseover', function() {
+				clearInterval(lunbo);
+			});
+			but2.addEventListener('mouseout', function() {
+				lunbo = setInterval(fn, 3000);
+			});
+
+			function fn() {
+				zhuan = zhuan + 45;
+				haha.style.cssText = ` transform: rotateY(${zhuan}deg); `;
+			}
+
+			haha.addEventListener('mouseover', function() {
+				clearInterval(lunbo);
+			});
+			haha.addEventListener('mouseout', function() {
+				lunbo = setInterval(fn, 3000);
+			});
+		</script>
+
+	</body>
+</html>
